@@ -1,0 +1,74 @@
+<TMPL_INCLUDE NAME="header-popup.tmpl">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="feedburner_configure" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>" />
+<input type="hidden" name="tmpl_id" value="<TMPL_VAR NAME=TMPL_ID>" />
+<input type="hidden" name="__smode" value="select" />
+
+<TMPL_IF NAME=ERROR_NO_MATCH>
+<h4 class="error-message"><MT_TRANS phrase="We were unable to find a FeedBurner account which matches the provided username and password. Please try again."></h4>
+</TMPL_IF>
+
+<div class="indent-left">2</div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Set FeedBurner Credentials"></h4>
+<p><MT_TRANS phrase="Enter your FeedBurner username and password below."></p>
+</div>
+
+<div class="action-box">
+<div class="setting-set">
+
+<div class="setting pkg">
+<div class="setting-label">
+<label for="feedburner_username"><MT_TRANS phrase="Username:"></label>
+</div>
+<div class="setting-field">
+<div class="setting-field-inner">
+<ul>
+<li><input type="text" name="feedburner_username" value="<TMPL_VAR NAME=FEEDBURNER_USERNAME>" maxlength="255" class="txt" /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="setting pkg">
+<div class="setting-label">
+<label for="feedburner_password"><MT_TRANS phrase="Password:"></label>
+</div>
+<div class="setting-field">
+<div class="setting-field-inner">
+<ul>
+<li><input type="password" name="feedburner_password" maxlength="255" class="txt" /></li>
+</ul>
+</div>
+</div>
+</div>
+
+</div><!-- .action-box -->
+</div><!-- .setting-set -->
+
+</div><!-- .indent-right -->
+
+<div class="indent-left">3</div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Connect to FeedBurner"></h4>
+<p><MT_TRANS phrase="Click the &#8220;Sign In&#8221; button to connect to FeedBurner."></p>
+</div>
+
+</div><!-- .indent-right -->
+
+<hr />
+
+<div align="center">
+<input type="button" name="cancel" value="<MT_TRANS phrase="Cancel">" onclick="window.close()" />
+<input type="submit" name="continue" value="<MT_TRANS phrase="Sign In">" />
+</div>
+
+</form>
+
+<TMPL_INCLUDE NAME="footer-popup.tmpl">

@@ -1,0 +1,29 @@
+<TMPL_INCLUDE NAME="header-popup.tmpl">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="feedburner_configure" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>" />
+<input type="hidden" name="feed_id" value="<TMPL_VAR NAME=FEED_ID>" />
+<input type="hidden" name="tmpl_id" value="<TMPL_VAR NAME=TMPL_ID>" />
+<input type="hidden" name="__smode" value="done" />
+
+<div class="indent-left"><TMPL_UNLESS NAME=FEED_OK>5<TMPL_ELSE>6</TMPL_UNLESS></div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Redirect Source Feed"></h4>
+<p><MT_TRANS phrase="Check the box if you would like to automatically redirect your source feed to FeedBurner (Not available on all systems):"> <input type="checkbox" name="feed_redirect" id="feed_redirect" value="1" /></p>
+</div>
+
+</div><!-- .indent-right -->
+
+<hr />
+
+<div align="center">
+<input type="button" name="cancel" value="<MT_TRANS phrase="Cancel">" onclick="window.close()" />
+<input type="submit" name="continue" value="<MT_TRANS phrase="Continue">" />
+</div>
+
+</form>
+
+<TMPL_INCLUDE NAME="footer-popup.tmpl">

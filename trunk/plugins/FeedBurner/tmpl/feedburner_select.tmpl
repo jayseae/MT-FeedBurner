@@ -1,0 +1,59 @@
+<TMPL_INCLUDE NAME="header-popup.tmpl">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="feedburner_configure" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>" />
+<input type="hidden" name="tmpl_id" value="<TMPL_VAR NAME=TMPL_ID>" />
+<input type="hidden" name="__smode" value="confirm" />
+
+<TMPL_IF NAME=ERROR_NO_SELECTION>
+<h4 class="error-message"><MT_TRANS phrase="Please make sure you select an existing feed or choose to create a new feed before continuing."></h4>
+</TMPL_IF>
+
+<TMPL_IF NAME=ERROR_SETTING>
+<h4 class="error-message"><MT_TRANS phrase="Sorry, there was an error mapping the source feed to the selected FeedBurner feed.  You can try again later, try another selection, or create a new feed.  If you have access to your Movable Type Activity Log, you should look there to try and determine a more detailed cause for this error before continuing."></h4>
+</TMPL_IF>
+
+<div class="indent-left">4</div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Select a Feed"></h4>
+<p><MT_TRANS phrase="You can either connect your weblog to one of your existing feeds you manage at FeedBurner, or create a new feed at FeedBurner."></p>
+</div>
+
+<div class="tableselect">
+<table cellspacing="0">
+<thead>
+<tr>
+<th class="cb fc">&nbsp;</th>
+<th class="title"><MT_TRANS phrase="Feed Name"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="cb fc"><input type="radio" name="id" value="0" class="select" /></td>
+<td class="title"><strong><MT_TRANS phrase="Create a new FeedBurner feed"></strong></td>
+</tr>
+<TMPL_LOOP NAME=FEEDBURNER_FEEDS>
+<tr class="<TMPL_IF NAME=IS_ODD>even<TMPL_ELSE>odd</TMPL_IF>">
+<td class="cb fc"><input type="radio" name="id" value="<TMPL_VAR NAME=ID>" class="select" /></td>
+<td class="title"><TMPL_VAR NAME=TITLE ESCAPE=HTML></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<hr />
+
+<div align="center">
+<input type="button" name="cancel" value="<MT_TRANS phrase="Cancel">" onclick="window.close()" />
+<input type="submit" name="continue" value="<MT_TRANS phrase="Continue">" onclick="disableButton(this)" />
+</div>
+
+</form>
+
+<TMPL_INCLUDE NAME="footer-popup.tmpl">

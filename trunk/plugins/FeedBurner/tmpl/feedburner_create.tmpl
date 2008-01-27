@@ -1,0 +1,81 @@
+<TMPL_INCLUDE NAME="header-popup.tmpl">
+
+<script type="text/javascript">
+    function populateFullUrl( path, id )
+    {
+        if( !path )
+            return;
+        var url = TC.elementOrId( id );
+        if( url )
+            url.innerHTML = path;
+    }
+</script>
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="feedburner_configure" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>" />
+<input type="hidden" name="tmpl_id" value="<TMPL_VAR NAME=TMPL_ID>" />
+<input type="hidden" name="__smode" value="confirm_create" />
+
+<TMPL_IF NAME=ERROR_INCOMPLETE>
+<h4 class="error-message"><MT_TRANS phrase="Please make sure you provide a name and complete the address for the new feed before continuing."></h4>
+</TMPL_IF>
+
+<TMPL_IF NAME=ERROR_TAKEN>
+<h4 class="error-message"><MT_TRANS phrase="Sorry, the feed address you've requested is either invalid or already taken by a FeedBurner user. Please try another address."></h4>
+</TMPL_IF>
+
+<div class="indent-left"><TMPL_IF NAME=NO_FEEDS>4<TMPL_ELSE>5</TMPL_IF></div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Create a New Feed"></h4>
+<p><MT_TRANS phrase="Enter a name and address for your new FeedBurner feed. Your feed address needs to be unique across all FeedBurner users, so you may want to get creative."></p>
+<p><MT_TRANS phrase="Make sure that the address does not contain any spaces in it (underscores work well to replace spaces, if you don't want to push all the words together)."></p>
+</div>
+
+<div class="action-box">
+<div class="setting-set">
+
+<div class="setting pkg">
+<div class="setting-label">
+<label for="feedname"><MT_TRANS phrase="Name:"></label>
+</div>
+<div class="setting-field">
+<div class="setting-field-inner">
+<ul>
+<li><input type="text" name="feedname" value="<TMPL_VAR NAME=FEEDNAME>" class="txt" /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="setting pkg">
+<div class="setting-label">
+<label for="feedurl"><MT_TRANS phrase="Address:"></label>
+</div>
+<div class="setting-field">
+<div class="setting-field-inner">
+<ul>
+<li style="margin-bottom: 5px;"><input type="text" name="feedurl" value="<TMPL_VAR NAME=FEEDURL>" class="txt" onkeyup="populateFullUrl( this.value, 'fb-address' )" /></li>
+</ul>
+</div>
+</div>
+<p>http://feeds.feedburner.com/<span id="fb-address"><TMPL_VAR NAME=FEEDURL></span></p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<hr />
+
+<div align="center">
+<input type="button" name="cancel" value="<MT_TRANS phrase="Cancel">" onclick="window.close()" />
+<input type="submit" name="continue" value="<MT_TRANS phrase="Continue">" />
+</div>
+
+</form>
+
+<TMPL_INCLUDE NAME="footer-popup.tmpl">

@@ -1,0 +1,27 @@
+<TMPL_INCLUDE NAME="header-popup.tmpl">
+
+<form>
+
+<TMPL_IF NAME=ERROR_NO_HTACCESS>
+<h4 class="error-message"><MT_TRANS phrase="We were unable to automatically create a redirect to your selected feed. Please create it manually."></h4>
+</TMPL_IF>
+
+<div class="indent-left">&raquo;</div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Configuration Complete"></h4>
+<p><MT_TRANS phrase="Your FeedBurner feed settings have been saved and will take effect immediately."></p>
+</div>
+
+</div><!-- .indent-right -->
+
+<hr />
+
+<div align="center">
+<input type="button" name="cancel" value="<MT_TRANS phrase="Close">" onclick="window.close()" />
+</div>
+
+</form>
+
+<TMPL_INCLUDE NAME="footer-popup.tmpl">

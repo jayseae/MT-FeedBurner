@@ -1,0 +1,372 @@
+/* $Id: tableselect.css 46166 2007-01-26 18:19:52Z wdickinson $ */
+
+/* tableselect */
+
+.tableselect {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #f9f9f9 #f6f6f6 #f3f3f3;
+    padding: 1px;
+    background-color: #cfdae5;
+}
+
+.tableselect table {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.tableselect thead tr {
+    background: #fff url(../images/tableselect/column-label-bg.gif) repeat-x left bottom;
+}
+
+.tableselect th,
+.tableselect td {
+    margin: 0;
+    border-bottom: 1px solid #fff;
+    padding: 3px 5px 3px 6px;
+    color: #000;
+    font: 11px/14px "Lucida Grande", Verdana, sans-serif;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableselect th {
+    border-bottom-color: #c5d3e0;
+    border-left: 1px solid #cfdae5;
+    padding-left: 5px;
+    color: #333;
+    font-weight: bold;
+    text-shadow: #fff 2px 2px 0;
+}
+
+.tableselect tbody tr {
+    background-color: #fff;
+}
+
+.tableselect tbody tr.even td {
+    border-bottom-color: #f3f6fc;
+    background-color: #f3f6f9;
+}
+
+.tableselect tbody tr.selected td {
+    border-bottom-color: #bdf;
+    color: #fff;
+    background-color: #369;
+}
+
+.tableselect tbody tr a { color: #036; }
+.tableselect tbody tr.selected a { color: #fff; }
+
+.tableselect th.fc { border-left-width: 0; }
+.tableselect td.fc { padding-left: 5px; }
+
+
+/* checkboxes and status icons */
+
+.tableselect .cb,
+.tableselect .si {
+    width: 1%;
+}
+
+.tableselect .cb input,
+.tableselect .cb img {
+    margin: 1px 0 0;
+}
+
+.tableselect .si img {
+    margin: 2px 0 0;
+}
+
+
+/* inline status icon setup */
+
+.tableselect td {
+    background-image: url(../images/spacer.gif);
+    background-position: 1000px 1000px;
+    background-repeat: no-repeat;
+}
+
+.tableselect#comments-list td.author,
+.tableselect#set-list td.design-name {
+    padding-left: 20px;
+}
+
+
+/* posts */
+
+.tableselect#entry-list .title             { width: 25%; }
+.tableselect#entry-list .category          { width: 20%; }
+.tableselect#entry-list .date              { width: 5%; }
+.tableselect#entry-list .author            { width: 20%; }
+.tableselect#entry-list .comment-status    { width: 10%; }
+.tableselect#entry-list .trackbacks-status { width: 15%; }
+
+.tableselect#entry-list tr td.si img.published { background-image: url(../images/status_icons/published.gif); }
+.tableselect#entry-list tr td.si img.draft     { background-image: url(../images/status_icons/draft.gif); }
+.tableselect#entry-list tr td.si img.future    { background-image: url(../images/status_icons/future.gif); }
+.tableselect#entry-list tr td.si img.featured  { background-image: url(../images/status_icons/featured.gif); }
+
+.tableselect#entry-list tr.selected td.si img.published { background-image: url(../images/status_icons/published-selected.gif); }
+.tableselect#entry-list tr.selected td.si img.draft     { background-image: url(../images/status_icons/draft-selected.gif); }
+.tableselect#entry-list tr.selected td.si img.future    { background-image: url(../images/status_icons/future-selected.gif); }
+.tableselect#entry-list tr.selected td.si img.featured  { background-image: url(../images/status_icons/featured-selected.gif); }
+
+
+/* comments */
+
+.tableselect#comments-list tr.published td.si img  { background-image: url(../images/status_icons/published.gif); }
+.tableselect#comments-list tr.moderated td.si img  { background-image: url(../images/moderated.gif); background-position: -1px -1px; }
+.tableselect#comments-list tr.blocked td.author    { background-image: url(../images/author-blocked.gif); background-position: 6px 4px; }
+.tableselect#comments-list tr.registered td.author { background-image: url(../images/registered.gif); background-position: 6px 4px; }
+
+.tableselect#comments-list tr.published.selected td.si img  { background-image: url(../images/status_icons/published-selected.gif); }
+.tableselect#comments-list tr.moderated.selected td.si img  { background-image: url(../images/moderated-selected.gif); }
+.tableselect#comments-list tr.blocked.selected td.author    { background-image: url(../images/author-blocked-selected.gif); }
+.tableselect#comments-list tr.registered.selected td.author { background-image: url(../images/registered-selected.gif); }
+
+
+/* trackbacks */
+
+.tableselect#trackback-list tr.published td.si img { background-image: url(../images/status_icons/published.gif); }
+.tableselect#trackback-list tr.moderated td.si img { background-image: url(../images/moderated.gif); background-position: -1px -1px; }
+
+.tableselect#trackback-list tr.published.selected td.si img { background-image: url(../images/status_icons/published-selected.gif); }
+.tableselect#trackback-list tr.moderated.selected td.si img { background-image: url(../images/moderated-selected.gif); }
+
+
+/* designs */
+
+.tableselect#set-list tr.active td.si img        { background-image: url(../images/status_icons/published.gif); }
+.tableselect#set-list tr.advanced td.design-name { background-image: url(../images/advanced.gif); background-position: 6px 5px; }
+
+.tableselect#set-list tr.active.selected td.si img        { background-image: url(../images/status_icons/published-selected.gif); }
+.tableselect#set-list tr.advanced.selected td.design-name { background-image: url(../images/advanced-selected.gif); }
+
+
+/* photos */
+
+.tableselect#photo-list .thumbnail img {
+    border: 1px solid #ccc;
+    padding: 2px;
+    background-color: #fff;
+}
+
+
+/* list items */
+
+.tableselect#item-list .col-view,
+.tableselect#lists_publish-list .col-view,
+.tableselect#lists_publish-adv-list .col-view {
+    text-align: center;
+}
+
+.tableselect#item-list tr td.col-view img,
+.tableselect#lists_publish-list tr td.col-view img,
+.tableselect#lists_publish-adv-list tr td.col-view img {
+    background-image: url(../images/status_icons/view.gif);
+}
+
+.tableselect#item-list tr.selected td.col-view img,
+.tableselect#lists_publish-list tr.selected td.col-view img,
+.tableselect#lists_publish-adv-list tr.selected td.col-view img {
+    background-image: url(../images/status_icons/view-selected.gif);
+}
+
+.tableselect#item-list .col-rating { width: auto; }
+
+.tableselect#item-list tr td.si img.rating-1 { background-image: url(../images/status_icons/rating1.gif); }
+.tableselect#item-list tr td.si img.rating-2 { background-image: url(../images/status_icons/rating2.gif); }
+.tableselect#item-list tr td.si img.rating-3 { background-image: url(../images/status_icons/rating3.gif); }
+.tableselect#item-list tr td.si img.rating-4 { background-image: url(../images/status_icons/rating4.gif); }
+.tableselect#item-list tr td.si img.rating-5 { background-image: url(../images/status_icons/rating5.gif); }
+
+.tableselect#item-list tr.selected td.si img.rating-1 { background-image: url(../images/status_icons/rating1-selected.gif); }
+.tableselect#item-list tr.selected td.si img.rating-2 { background-image: url(../images/status_icons/rating2-selected.gif); }
+.tableselect#item-list tr.selected td.si img.rating-3 { background-image: url(../images/status_icons/rating3-selected.gif); }
+.tableselect#item-list tr.selected td.si img.rating-4 { background-image: url(../images/status_icons/rating4-selected.gif); }
+.tableselect#item-list tr.selected td.si img.rating-5 { background-image: url(../images/status_icons/rating5-selected.gif); }
+
+.tableselect#item-list .col-artwork { text-align: center; }
+.tableselect#item-list .col-artwork img {
+    border: 1px solid #ccc;
+    padding: 2px;
+    background-color: #fff;
+}
+
+
+/* banned */
+
+.tableselect#banned-list .name { width: 35%; }
+.tableselect#banned-list .date { width: 25%; }
+
+
+/* file links */
+
+.tableselect#file-list tr td.filename img {
+    margin-right: 3px;
+    vertical-align: -1px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.tableselect#file-list tr.fileish td.filename img   { background-image: url(../images/file_manager/file.gif); }
+.tableselect#file-list tr.folderish td.filename img { background-image: url(../images/file_manager/folder.gif); }
+.tableselect#file-list tr td.link img               { background-image: url(../images/file_manager/link.gif); }
+
+.tableselect#file-list tr.fileish.selected td.filename img   { background-image: url(../images/file_manager/file-selected.gif); }
+.tableselect#file-list tr.folderish.selected td.filename img { background-image: url(../images/file_manager/folder-selected.gif); }
+.tableselect#file-list tr.selected td.link img               { background-image: url(../images/file_manager/link-selected.gif); }
+
+
+/* non-flyout link */
+
+.tableselect a {
+    text-decoration: none;
+}
+
+.tableselect a:hover {
+    text-decoration: underline;
+}
+
+
+/* flyout link */
+
+.tableselect tbody a.flyout-link {
+    padding: 0 9px 0 0;
+    background: transparent url(../images/tri.gif) 100% 60% no-repeat;
+}
+
+.tableselect tbody tr.selected a.flyout-link {
+    background-image: url(../images/tri-selected.gif);
+}
+
+.tableselect tbody a.flyout-link:hover {
+    background: url(../images/tri-on.gif) 100% 60% no-repeat;
+}
+
+.tableselect tbody tr.selected a.flyout-link:hover {
+    background-image: url(../images/tri-on-selected.gif);
+}
+
+
+/* zerostate */
+
+.zerostate {
+    border: 1px solid #ccc;
+    padding: 14px 9px;
+    text-align: center;
+}
+
+.zerostate h4 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+
+.zerostate p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 12px;
+    line-height: 1.2em;
+}
+
+
+/* "qlink" */
+
+a.qlink:link,
+a.qlink:visited {
+    border-bottom: 1px dotted #693;
+    color: #693;
+    text-decoration: none;
+}
+
+a.qlink:hover {
+    border-bottom: 1px solid #693;
+    color: #fff;
+    background-color: #693;
+}
+
+a.qlink:active {
+    border-bottom: 1px solid #360;
+    color: #fff;
+    background-color: #360;
+}
+
+
+/* filter bar */
+
+.filter-bar {
+    margin: 0 10px;
+    padding: 8px 10px 6px;
+    background: url(../images/tableselect/filter-bg.gif) no-repeat top left;
+}
+
+.filter-bar p {
+    margin: 0;
+    color: #000;
+    font: normal 11px/14px "Lucida Grande", Verdana, sans-serif;
+}
+
+.filter-bar input,
+.filter-bar select {
+    font-size: 10px;
+}
+
+.filter-bar .filter-label {
+    font-weight: bold;
+}
+
+
+/* action bar */
+
+.action-bar {
+    margin-top: 10px;
+}
+
+.action-bar .lcol {
+    width: 300px;
+}
+
+.action-bar .rcol {
+    width: 300px;
+    text-align: right;
+}
+
+.action-bar .rcol select {
+    width: 150px;
+}
+
+
+/* pagination bar */
+
+.pagination-bar {
+    margin-top: 10px;
+    border-top: 1px solid #c3cfdb;
+    padding-top: 10px;
+}
+
+.pagination-bar .lcol {
+    width: 300px;
+}
+
+.pagination-bar .rcol {
+    width: 300px;
+    text-align: right;
+}
+
+.pagination-bar p {
+    margin: 0;
+    padding: 0 0 2px;
+    color: #000;
+    font: normal 11px/14px "Lucida Grande", Verdana, sans-serif;
+}
+
+.pagination-bar input,
+.pagination-bar select {
+    font-size: 10px;
+}
+
+.pagination-bar .selected { color: #000; }
+.pagination-bar .disabled { color: #666; }

@@ -1,0 +1,51 @@
+<TMPL_INCLUDE NAME="header-popup.tmpl">
+
+<form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
+<input type="hidden" name="__mode" value="feedburner_signup" />
+<input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>" />
+
+<TMPL_IF NAME=ERROR_NO_CONNECT>
+<h4 class="error-message"><MT_TRANS phrase="You must choose a source feed to connect to FeedBurner. Please try again."></h4>
+</TMPL_IF>
+
+<div class="indent-left">1</div>
+<div class="indent-right">
+
+<div class="step-overview">
+<h4><MT_TRANS phrase="Select Source Feed"></h4>
+<p><MT_TRANS phrase="Choose the source feed from the drop-down list."></p>
+</div>
+
+<div class="action-box">
+<div class="setting-set">
+
+<div class="setting pkg">
+<div class="setting-label">
+<label for="tmpl_id"><MT_TRANS phrase="Source:"></label>
+</div>
+<div class="setting-field">
+<div class="setting-field-inner">
+<select name="tmpl_id" id="tmpl_id">
+<TMPL_LOOP NAME=FEED_TEMPLATE_LOOP>
+<option value="<TMPL_VAR NAME=FEED_TEMPLATE_ID>"><TMPL_VAR NAME=FEED_TEMPLATE_NAME></option>
+</TMPL_LOOP>
+</select>
+</div>
+</div>
+</div>
+
+</div><!-- .action-box -->
+</div><!-- .setting-set -->
+
+</div><!-- .indent-right -->
+
+<hr />
+
+<div align="center">
+<input type="button" name="cancel" value="<MT_TRANS phrase="Cancel">" onclick="window.close()" />
+<input type="submit" name="continue" value="<MT_TRANS phrase="Connect">" />
+</div>
+
+</form>
+
+<TMPL_INCLUDE NAME="footer-popup.tmpl">

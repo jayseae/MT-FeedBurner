@@ -1,0 +1,208 @@
+.step-overview {
+    padding: 0 0 5px 0;
+}
+
+.step-overview h4,
+.step-overview p {
+    margin: 0 0 5px 0;
+}
+
+.action-box {
+    padding: 0 10px;
+}
+
+.action-box .field {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.action-box .field p {
+    margin: 5px 0;
+    padding: 0;
+}
+
+.action-box .field .label-column {
+    float: left;
+    width: 60px;
+}
+
+.action-box .field .label-column h5 {
+    margin: 0;
+    padding-top: 3px;
+}
+
+.action-box .field .label-column h5#account-label {
+    padding-top: 0;
+}
+
+.action-box .field .field-column {
+    margin-left: 70px;
+    width: 230px;
+}
+
+.action-box input,
+.action-box select {
+    margin: 0;
+    padding: 0;
+}
+
+.float-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.float-wrapper .action-container {
+    float: right;
+    width: 205px;
+}
+
+.float-wrapper .category-col {
+    float: left;
+    width: 130px;
+    margin-left: 15px;
+}
+
+.float-wrapper .category-col p {
+    margin: 0 0 3px 0;
+}
+
+* html body .float-wrapper .category-col p {
+    margin: 0 0 1px 0;
+}
+
+.float-wrapper .layout-col {
+    float: left;
+    width: 62px;
+    text-align: center;
+}
+
+.float-wrapper .layout-col img {
+    margin-top: 5px;
+}
+
+.font-colors table td {
+    font-size: 11px;
+}
+
+.font-colors table td.label {
+    text-align: right;
+}
+
+.font-colors table td input {
+    width: 60px;
+    margin: 0 5px;
+    font-size: 11px;
+}
+
+* html body .cb, * html body .rb {
+    margin: -2px -5px;
+}
+
+.kanoodle-container {
+    float: left;
+    width: 120px;
+}
+
+.kanoodle-ads {
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+}
+
+.kanoodle-ad {
+    width: 100%;
+    overflow: hidden;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+}
+
+.kanoodle-ad a {
+    display: block;
+    margin: 2px 5px;
+    font-size: 11px;
+    line-height: 12px;
+    font-weight: normal;
+}
+
+.kanoodle-ad-title a:link,
+.kanoodle-ad-title a:hover,
+.kanoodle-ad-title a:active,
+.kanoodle-ad-title a:visited {
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.kanoodle-ad-body a:link,
+.kanoodle-ad-body a:hover,
+.kanoodle-ad-body a:active,
+.kanoodle-ad-body a:visited {
+    text-decoration: none;
+}
+
+.kanoodle-ad-link a:link,
+.kanoodle-ad-link a:hover,
+.kanoodle-ad-link a:active,
+.kanoodle-ad-link a:visited {
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.setting-set {
+    overflow: hidden;
+    padding: 10px 0 0;
+}
+
+.setting {
+    margin: 0 0 5px;
+}
+
+.setting p {
+    margin: 0;
+    padding-bottom: 5px;
+    color: #333;
+    font-size: 10px;
+    text-align: center;
+}
+
+.setting-label,
+.setting-field {
+    margin-left: 10px;
+    float: left;
+    display: inline;
+}
+
+.setting-label {
+    width: 60px;
+    padding-top: 0.25em;
+    font-size: 1.0em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.setting-field {
+    width: 230px;
+}
+
+.setting-field-inner {
+    padding-bottom: 5px;
+}
+
+.setting-field ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.setting-field li {
+    margin-bottom: 0;
+}
+
+.setting-field input {
+    margin: 0;
+}
+
+.setting-field input.txt {
+    width: 220px;
+}
