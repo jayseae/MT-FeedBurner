@@ -46,14 +46,20 @@ use vars qw( %Lexicon );
 	
 	## feedburner_confirm.tmpl
 	'Redirect Source Feed' => 'Redirect Source Feed',
-	'Check the box if you would like to automatically redirect your source feed to FeedBurner (Not available on all systems):' => 'Check the box if you would like to automatically redirect your source feed to FeedBurner (Not available on all systems):',
+	'If you would like to automatically redirect your source feed to FeedBurner, check this box (Not available on all systems):' => 'If you would like to automatically redirect your source feed to FeedBurner, check this box (Not available on all systems):',
+	'Redirect all available index feeds, not just the source feed:' => 'Redirect all available index feeds, not just the source feed:',
+	'Automatic redirection will not always work, as it is only intended for systems that use Apache with mod_rewrite and .htaccess.  This is because there are a number of systems - notably Windows using IIS - that may not support the rewriting method used here.' => 'Automatic redirection will not always work, as it is only intended for systems that use Apache with mod_rewrite and .htaccess.  This is because there are a number of systems - notably Windows using IIS - that may not support the rewriting method used here.',
+	'If you still choose to select automatic redirection, you may also choose to redirect <em>all</em> available feeds to the target FeedBurner feed.  This means that a request for any of those feeds will be detected and be sent to your new FeedBurner feed location.' => 'If you still choose to select automatic redirection, you may also choose to redirect <em>all</em> available feeds to the target FeedBurner feed.  This means that a request for any of those feeds will be detected and be sent to your new FeedBurner feed location.',
+	'Repeated redirection may introduce complexities into your system that could result in system instability, so you may wish to do this work manually.  FeedBurner has a thorough (but lengthy)' => 'Repeated redirection may introduce complexities into your system that could result in system instability, so you may wish to do this work manually.  FeedBurner has a thorough (but lengthy)',
+	'on the subject for your reading pleasure.' => 'on the subject for your reading pleasure.',
 	'Cancel' => 'Cancel',
 	'Continue' => 'Continue',
 	
 	## feedburner_connect.tmpl
 	'You must choose a source feed to connect to FeedBurner. Please try again.' => 'You must choose a source feed to connect to FeedBurner. Please try again.',
 	'Select Source Feed' => 'Select Source Feed',
-	'Choose the source feed from the drop-down list.' => 'Choose the source feed from the drop-down list.',
+	'Choose a feed to use as a content source for your FeedBurner feed.' => 'Choose a feed to use as a content source for your FeedBurner feed.',
+	'Your FeedBurner feed will connect to this source feed automatically.' => 'Your FeedBurner feed will connect to this source feed automatically.',
 	'Source:' => 'Source:',
 	'Connect' => 'Connect',
 	
@@ -69,7 +75,9 @@ use vars qw( %Lexicon );
 	## feedburner_done.tmpl
 	'We were unable to automatically create a redirect to your selected feed. Please create it manually.' => 'We were unable to automatically create a redirect to your selected feed. Please create it manually.',
 	'Configuration Complete' => 'Configuration Complete',
-	'Your FeedBurner feed settings have been saved and will take effect immediately.' => 'Your FeedBurner feed settings have been saved and will take effect immediately.',
+	'This is the address of your feed source.' => 'This is the address of your feed source.',
+	'This is the address of your FeedBurner feed.' => 'This is the address of your FeedBurner feed.',
+	'If you chose to redirect your existing feed(s) to the new FeedBurner feed, then your current readers will be redirected automatically.  Otherwise, you should now manually create the redirect using the information above.' => 'If you chose to redirect your existing feed(s) to the new FeedBurner feed, then your current readers will be redirected automatically.  Otherwise, you should now manually create the redirect using the information above.',
 	'Close' => 'Close',
 	
 	## feedburner_select.tmpl
@@ -84,6 +92,7 @@ use vars qw( %Lexicon );
 	'We were unable to find a FeedBurner account which matches the provided username and password. Please try again.' => 'We were unable to find a FeedBurner account which matches the provided username and password. Please try again.',
 	'Set FeedBurner Credentials' => 'Set FeedBurner Credentials',
 	'Enter your FeedBurner username and password below.' => 'Enter your FeedBurner username and password below.',
+	'The account must already exist at FeedBurner.' => 'The account must already exist at FeedBurner.',
 	'Username:' => 'Username:',
 	'Password:' => 'Password:',
 	'Connect to FeedBurner' => 'Connect to FeedBurner',

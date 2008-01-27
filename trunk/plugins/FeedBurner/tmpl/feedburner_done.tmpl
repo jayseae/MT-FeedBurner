@@ -11,7 +11,35 @@
 
 <div class="step-overview">
 <h4><MT_TRANS phrase="Configuration Complete"></h4>
-<p><MT_TRANS phrase="Your FeedBurner feed settings have been saved and will take effect immediately."></p>
+<p><MT_TRANS phrase="This is the address of your feed source."></p>
+</div>
+
+<div class="action-box">
+<div class="setting-set">
+
+<div class="setting pkg">
+<label for="feedburner_username"><li><TMPL_IF NAME=FEED_SOURCE><TMPL_VAR NAME=FEED_SOURCE><TMPL_ELSE>Source Address Unavailable</TMPL_IF></li></label>
+</div>
+
+</div><!-- .action-box -->
+</div><!-- .setting-set -->
+
+<div class="step-overview">
+<p><MT_TRANS phrase="This is the address of your FeedBurner feed."></p>
+</div>
+
+<div class="action-box">
+<div class="setting-set">
+
+<div class="setting pkg">
+<label for="feedburner_username"><li><TMPL_IF NAME=FEED_TARGET><TMPL_VAR NAME=FEED_TARGET><TMPL_ELSE>Target Address Unavailable</TMPL_IF></li></label>
+</div>
+
+</div><!-- .action-box -->
+</div><!-- .setting-set -->
+
+<div class="step-overview">
+<p><MT_TRANS phrase="If you chose to redirect your existing feed(s) to the new FeedBurner feed, then your current readers will be redirected automatically.  Otherwise, you should now manually create the redirect using the information above."></p>
 </div>
 
 </div><!-- .indent-right -->

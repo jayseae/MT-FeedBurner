@@ -1,9 +1,23 @@
 <TMPL_INCLUDE NAME="header-popup.tmpl">
 
+<script language="JavaScript">
+  <!--
+    function hide_and_seek () {
+      if (document.getElementById('feed_redirect').checked) {
+        document.getElementById('redirect_all').disabled = 0;
+      } else {
+        document.getElementById('redirect_all').disabled = 1;
+      }
+    }
+  //-->
+</script>
+
 <form method="post" action="<TMPL_VAR NAME=SCRIPT_URL>">
 <input type="hidden" name="__mode" value="feedburner_configure" />
 <input type="hidden" name="blog_id" value="<TMPL_VAR NAME=BLOG_ID>" />
 <input type="hidden" name="feed_id" value="<TMPL_VAR NAME=FEED_ID>" />
+<input type="hidden" name="feed_source" value="<TMPL_VAR NAME=FEED_SOURCE>" />
+<input type="hidden" name="feed_target" value="<TMPL_VAR NAME=FEED_TARGET>" />
 <input type="hidden" name="tmpl_id" value="<TMPL_VAR NAME=TMPL_ID>" />
 <input type="hidden" name="__smode" value="done" />
 
@@ -12,7 +26,14 @@
 
 <div class="step-overview">
 <h4><MT_TRANS phrase="Redirect Source Feed"></h4>
-<p><MT_TRANS phrase="Check the box if you would like to automatically redirect your source feed to FeedBurner (Not available on all systems):"> <input type="checkbox" name="feed_redirect" id="feed_redirect" value="1" /></p>
+<p><MT_TRANS phrase="If you would like to automatically redirect your source feed to FeedBurner, check this box (Not available on all systems):"> <input type="checkbox" onclick="hide_and_seek(this.form)" name="feed_redirect" id="feed_redirect" value="1" /></p>
+<p><MT_TRANS phrase="Redirect all available index feeds, not just the source feed:"> <input type="checkbox" name="redirect_all" id="redirect_all" value="1" /></p>
+
+<hr />
+
+<p><MT_TRANS phrase="Automatic redirection will not always work, as it is only intended for systems that use Apache with mod_rewrite and .htaccess.  This is because there are a number of systems - notably Windows using IIS - that may not support the rewriting method used here."></p>
+<p><MT_TRANS phrase="If you still choose to select automatic redirection, you may also choose to redirect <em>all</em> available feeds to the target FeedBurner feed.  This means that a request for any of those feeds will be detected and be sent to your new FeedBurner feed location."></p>
+<p><MT_TRANS phrase="Repeated redirection may introduce complexities into your system that could result in system instability, so you may wish to do this work manually.  FeedBurner has a thorough (but lengthy)"> <a href="http://forums.feedburner.com/viewtopic.php?t=17">support forum post</a> <MT_TRANS phrase="on the subject for your reading pleasure."></p>
 </div>
 
 </div><!-- .indent-right -->
@@ -25,5 +46,11 @@
 </div>
 
 </form>
+
+<script language="JavaScript">
+  <!--
+    hide_and_seek();
+  //-->
+</script>
 
 <TMPL_INCLUDE NAME="footer-popup.tmpl">

@@ -18,7 +18,7 @@ $FeedBurner = MT::Plugin::FeedBurner->new({
   plugin_link => 'http://www.everitz.com/sol/mt-feedburner/index.php',
   doc_link => 'http://www.everitz.com/sol/mt-feedburner/index.php#install',
   l10n_class => 'FeedBurner::L10N',
-  version => '1.0.0',
+  version => '1.1.0',
 });
 MT->add_plugin($FeedBurner);
 
@@ -122,6 +122,8 @@ sub feedburner_configure {
             $param{'error_setting'} = 1;
           } else {
             $param{'feed_id'} = $feed_id;
+            $param{'feed_source'} = $blog_url . $tmpl->outfile;
+            $param{'feed_target'} = 'http://feeds.feedburner.com/' . $feedinfo->{'uri'};
           }
         } else {
           $template = 'feedburner_select.tmpl';
@@ -173,10 +175,13 @@ sub feedburner_configure {
   }
 
   if ($smode eq 'done') {
+    $param{'feed_source'} = $app->param('feed_source');
+    $param{'feed_target'} = $app->param('feed_target');
     if ($app->param('feed_redirect')) {
       my $FeedBurner = MT::Plugin::FeedBurner->instance;
       my $username = $FeedBurner->get_config_value("template_username_$tmpl_id", 'blog:'.$blog_id);
       my $password = $FeedBurner->get_config_value("template_password_$tmpl_id", 'blog:'.$blog_id);
+      my $redirect_all = $app->param('redirect_all') || '0';
       my $feed_id = $app->param('feed_id');
       my $feedinfo;
       require Net::FeedBurner;
@@ -189,13 +194,7 @@ sub feedburner_configure {
         $FeedBurner->set_config_value("template_username_$tmpl_id", '', 'blog:'.$blog_id);
         $FeedBurner->set_config_value("template_password_$tmpl_id", '', 'blog:'.$blog_id);
         my $feedburner_url = 'http://feeds.feedburner.com/' . $feedinfo->{'uri'};
-        require MT::Template;
-        my $tmpl = MT::Template->load($tmpl_id);
-        if ($tmpl && $tmpl->outfile) {
-          unless (update_htaccess($blog_id, $tmpl_id, $tmpl->outfile, $feedburner_url)) {
-            $param{'error_no_htaccess'} = 1;
-          }
-        } else {
+        unless (update_htaccess($blog_id, $tmpl_id, $feedburner_url, $redirect_all)) {
           $param{'error_no_htaccess'} = 1;
         }
       } else {
@@ -264,40 +263,77 @@ sub feedburner_signup {
 # redirect
 
 sub update_htaccess {
-  my ($blog_id, $tmpl_id, $tmpl_outfile, $feed_url) = @_;
-  my (@in, @out);
+  my ($blog_id, $source_tmpl_id, $target_feed_url, $redirect_all) = @_;
 
   require MT::Blog;
   my $blog = MT::Blog->load($blog_id);
-  unless ($blog) {
-    return 0;
+  return 0 unless ($blog);
+  my $htaccess = File::Spec->catfile($blog->site_path(), '.htaccess');
+
+  require MT::Template;
+  # find possible rss templates (indexes only)
+  my @tmpl = grep { ($_->name =~ /(atom|rss)/i) || ($_->outfile =~ /\.(xml|rdf|rss)$/i && $_->outfile !~ /^rsd/i) } MT::Template->load ({ blog_id => $blog_id, type => 'index' });
+  # only load source unless redirecting all
+  unless ($redirect_all) {
+    @tmpl = MT::Template->load($source_tmpl_id);
+  }
+  return 0 unless (scalar @tmpl);
+
+  foreach my $tmpl (@tmpl) {
+    my $tmpl_id = $tmpl->id;
+    my @out;
+    my $x;
+
+    # existing redirect comment
+    my $c = "### MT-FeedBurner (Blog: $blog_id, Template: $tmpl_id) ###";
+
+    # remove existing redirect
+    open (ONE, $htaccess) || die "($htaccess) Open Failed: $!\n";
+    while (<ONE>) {
+      chomp($_);
+      if ($x) {
+        $x--;
+        next;
+      }
+      if ($_ eq $c) {
+        $x = 7;
+        next;
+      }
+      push @out, $_."\n";
+    }
+    close (ONE);
+
+    open (TWO, ">$htaccess") || die "($htaccess) Open Failed: $!\n";
+    foreach my $line (@out) {
+      print TWO $line;
+    }
+    close (TWO);
   }
 
-  my $x;
-  my $htaccess = File::Spec->catfile($blog->site_path(), '.htaccess');
+  my @out;
   open (ONE, $htaccess) || die "($htaccess) Open Failed: $!\n";
   while (<ONE>) {
-    if ($x) {
-      $x--;
-      next;
-    }
-    if ($_ =~ m!### MT-FeedBurner (Blog: $blog_id, Template: $tmpl_id) ###!) {
-      $x = 7;
-      next;
-    }
     push @out, $_;
   }
   close (ONE);
 
-  $tmpl_outfile =~ s!\.!\\\.!;
-  push @out, '### MT-FeedBurner (Blog: '.$blog_id.', Template: '.$tmpl_id.') ###'."\n";
-  push @out, '<IfModule mod_rewrite.c>'."\n";
-  push @out, 'RewriteEngine on'."\n";
-  push @out, 'RewriteCond %{HTTP_USER_AGENT} !FeedBurner'."\n";
-  push @out, 'RewriteRule ^'.$tmpl_outfile.'$ '.$feed_url.' [L,R=302]'."\n";
-  push @out, 'RewriteEngine off'."\n";
-  push @out, '</IfModule>'."\n";
-  push @out, '### MT-FeedBurner (Blog: '.$blog_id.', Template: '.$tmpl_id.') ###'."\n";
+  foreach my $tmpl (@tmpl) {
+    my $tmpl_id = $tmpl->id;
+
+    # skip adding new redirect without outfile
+    next unless ($tmpl->outfile);
+
+    my $source_tmpl_outfile = $tmpl->outfile;
+    $source_tmpl_outfile =~ s!\.!\\\.!;
+    push @out, '### MT-FeedBurner (Blog: '.$blog_id.', Template: '.$tmpl_id.') ###'."\n";
+    push @out, '<IfModule mod_rewrite.c>'."\n";
+    push @out, 'RewriteEngine on'."\n";
+    push @out, 'RewriteCond %{HTTP_USER_AGENT} !FeedBurner'."\n";
+    push @out, 'RewriteCond %{HTTP_USER_AGENT} !FeedValidator'."\n";
+    push @out, 'RewriteRule ^'.$source_tmpl_outfile.'$ '.$target_feed_url.' [L,R=302]'."\n";
+    push @out, '</IfModule>'."\n";
+    push @out, '### MT-FeedBurner (Blog: '.$blog_id.', Template: '.$tmpl_id.') ###'."\n";
+  }
 
   open (TWO, ">$htaccess") || die "($htaccess) Open Failed: $!\n";
   foreach my $line (@out) {
